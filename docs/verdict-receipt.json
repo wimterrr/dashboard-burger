@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-14T09:58:40.133Z",
+  "generatedAt": "2026-04-14T10:25:28.977Z",
   "policy": [
     "build now favors non-muted build-or-ship lanes, recent updates, repo or deploy receipts, and explicit next steps.",
     "park holds active work that still has a credible next action but is not the strongest weekly push.",
@@ -147,7 +147,7 @@
         "stage": "operate",
         "stageLabel": "operate",
         "updatedAt": "2026-04-13T19:31:56.330Z",
-        "ageDays": 0.6018958680555555,
+        "ageDays": 0.6205167476851852,
         "maturityScore": 20,
         "nextActionCount": 3,
         "nextActionPreview": "Expose the replay receipt or a readable summary of it on the public Pages proof surface.",
@@ -169,7 +169,7 @@
         "freezeReasons": [],
         "scores": {
           "buildNow": {
-            "total": 123.98104131944444,
+            "total": 123.79483252314814,
             "breakdown": [
               {
                 "label": "stage-priority",
@@ -189,7 +189,7 @@
               },
               {
                 "label": "freshness",
-                "value": 33.981041319444444
+                "value": 33.794832523148145
               },
               {
                 "label": "next-actions",
@@ -202,7 +202,7 @@
             ]
           },
           "killReview": {
-            "total": 43.8,
+            "total": 44.2,
             "breakdown": [
               {
                 "label": "muted-bonus",
@@ -218,7 +218,7 @@
               },
               {
                 "label": "age-pressure",
-                "value": 10.8
+                "value": 11.2
               },
               {
                 "label": "missing-repo",
@@ -242,7 +242,7 @@
         "stage": "operate",
         "stageLabel": "operate",
         "updatedAt": "2026-04-14T09:33:04.852Z",
-        "ageDays": 0.01776945601851852,
+        "ageDays": 0.03639033564814815,
         "maturityScore": 20,
         "nextActionCount": 3,
         "nextActionPreview": "Reduce the eight operate-stage project lanes that still lack an explicit reopen trigger.",
@@ -273,7 +273,7 @@
         ],
         "scores": {
           "buildNow": {
-            "total": 74.82230543981481,
+            "total": 74.63609664351853,
             "breakdown": [
               {
                 "label": "stage-priority",
@@ -293,7 +293,7 @@
               },
               {
                 "label": "freshness",
-                "value": 39.82230543981481
+                "value": 39.63609664351852
               },
               {
                 "label": "next-actions",
@@ -306,7 +306,7 @@
             ]
           },
           "killReview": {
-            "total": 63.3,
+            "total": 63.7,
             "breakdown": [
               {
                 "label": "muted-bonus",
@@ -322,7 +322,7 @@
               },
               {
                 "label": "age-pressure",
-                "value": 0.3
+                "value": 0.7
               },
               {
                 "label": "missing-repo",
@@ -346,7 +346,7 @@
         "stage": "operate",
         "stageLabel": "operate",
         "updatedAt": "2026-04-14T05:32:24.272Z",
-        "ageDays": 0.18490579861111112,
+        "ageDays": 0.20352667824074075,
         "maturityScore": 20,
         "nextActionCount": 3,
         "nextActionPreview": "Run one real Godot cold-reload pass that starts in Route01, enters Battle, captures Mossbit, saves at SaveAnchor, restarts, and proves checkpoint_id, roster_delta, and spent_items survive together.",
@@ -377,7 +377,7 @@
         ],
         "scores": {
           "buildNow": {
-            "total": 73.15094201388888,
+            "total": 72.9647332175926,
             "breakdown": [
               {
                 "label": "stage-priority",
@@ -397,7 +397,7 @@
               },
               {
                 "label": "freshness",
-                "value": 38.15094201388889
+                "value": 37.964733217592595
               },
               {
                 "label": "next-actions",
@@ -410,7 +410,7 @@
             ]
           },
           "killReview": {
-            "total": 66.3,
+            "total": 66.7,
             "breakdown": [
               {
                 "label": "muted-bonus",
@@ -426,7 +426,7 @@
               },
               {
                 "label": "age-pressure",
-                "value": 3.3
+                "value": 3.7
               },
               {
                 "label": "missing-repo",
@@ -452,7 +452,7 @@
         "stage": "ready",
         "stageLabel": "ready (muted)",
         "updatedAt": "2026-04-10T02:31:20.114Z",
-        "ageDays": 4.310648368055555,
+        "ageDays": 4.329269247685185,
         "maturityScore": 17,
         "nextActionCount": 4,
         "nextActionPreview": "muted 된 개발 스레드 1건으로 수동 replay를 돌린다: 카드만 받은 두 번째 에이전트가 5분 안에 trace나 report를 열고 첫 수정 시도를 시작하는지 본다.",
@@ -532,7 +532,7 @@
             ]
           },
           "killReview": {
-            "total": 321.6,
+            "total": 321.9,
             "breakdown": [
               {
                 "label": "muted-bonus",
@@ -548,7 +548,7 @@
               },
               {
                 "label": "age-pressure",
-                "value": 77.6
+                "value": 77.9
               },
               {
                 "label": "missing-repo",
@@ -572,7 +572,7 @@
         "stage": "ready",
         "stageLabel": "ready (muted)",
         "updatedAt": "2026-04-10T05:32:12.455Z",
-        "ageDays": 4.185042569444445,
+        "ageDays": 4.203663449074074,
         "maturityScore": 17,
         "nextActionCount": 3,
         "nextActionPreview": "Use the no-engine latest-three receipt plus its ready card to draft one strict `충족 / 부분 충족 / 미충족` verdict with exactly three evidence lines and no repo re-read.",
@@ -652,7 +652,7 @@
             ]
           },
           "killReview": {
-            "total": 323.3,
+            "total": 323.7,
             "breakdown": [
               {
                 "label": "muted-bonus",
@@ -668,7 +668,7 @@
               },
               {
                 "label": "age-pressure",
-                "value": 75.3
+                "value": 75.7
               },
               {
                 "label": "missing-repo",
@@ -692,7 +692,7 @@
         "stage": "ready",
         "stageLabel": "ready (muted)",
         "updatedAt": "2026-04-10T07:31:12.546Z",
-        "ageDays": 4.102402627314815,
+        "ageDays": 4.121023506944445,
         "maturityScore": 17,
         "nextActionCount": 3,
         "nextActionPreview": "Replay one pilot workflow against an inherited-org-policy repo and a repo-level override so the receipt proves why the tier stayed comment-only or moved upward.",
@@ -772,7 +772,7 @@
             ]
           },
           "killReview": {
-            "total": 321.8,
+            "total": 322.2,
             "breakdown": [
               {
                 "label": "muted-bonus",
@@ -788,7 +788,7 @@
               },
               {
                 "label": "age-pressure",
-                "value": 73.8
+                "value": 74.2
               },
               {
                 "label": "missing-repo",
@@ -814,7 +814,7 @@
         "stage": "ready",
         "stageLabel": "ready (muted)",
         "updatedAt": "2026-04-02T22:33:06.771Z",
-        "ageDays": 11.476080578703703,
+        "ageDays": 11.494701458333333,
         "maturityScore": 17,
         "nextActionCount": 3,
         "nextActionPreview": "Add a small deliberate-silence receipt that lists muted or inactive project lanes with the stored reason they are quiet.",
@@ -894,7 +894,7 @@
             ]
           },
           "killReview": {
-            "total": 454.6,
+            "total": 454.9,
             "breakdown": [
               {
                 "label": "muted-bonus",
@@ -910,7 +910,7 @@
               },
               {
                 "label": "age-pressure",
-                "value": 206.6
+                "value": 206.9
               },
               {
                 "label": "missing-repo",
@@ -934,7 +934,7 @@
         "stage": "ready",
         "stageLabel": "ready (muted)",
         "updatedAt": "2026-04-08T03:31:35.369Z",
-        "ageDays": 6.268805138888889,
+        "ageDays": 6.287426018518518,
         "maturityScore": 17,
         "nextActionCount": 3,
         "nextActionPreview": "active unmuted operate 11개를 마지막 3개 업데이트 기준으로 replay해서 `continue / trim / stop` verdict와 trigger line을 한 표로 고정한다.",
@@ -1014,7 +1014,7 @@
             ]
           },
           "killReview": {
-            "total": 360.8,
+            "total": 361.2,
             "breakdown": [
               {
                 "label": "muted-bonus",
@@ -1030,7 +1030,7 @@
               },
               {
                 "label": "age-pressure",
-                "value": 112.8
+                "value": 113.2
               },
               {
                 "label": "missing-repo",
@@ -1054,7 +1054,7 @@
         "stage": "ready",
         "stageLabel": "ready (muted)",
         "updatedAt": "2026-04-08T05:30:47.886Z",
-        "ageDays": 6.186021377314815,
+        "ageDays": 6.204642256944444,
         "maturityScore": 15,
         "nextActionCount": 3,
         "nextActionPreview": "사람이 바로 다시 시작할 생각이 있으면 먼저 project mute를 해제하고, 최근 20편의 제목·썸네일 문구·설명 첫 줄·첫 훅·한 줄 개요·AI disclosure 여부를 한 번에 넣은 입력팩과 새 초안 1편으로 첫 20+1 코칭 카드를 재현한다.",
@@ -1134,7 +1134,7 @@
             ]
           },
           "killReview": {
-            "total": 359.3,
+            "total": 359.7,
             "breakdown": [
               {
                 "label": "muted-bonus",
@@ -1150,7 +1150,7 @@
               },
               {
                 "label": "age-pressure",
-                "value": 111.3
+                "value": 111.7
               },
               {
                 "label": "missing-repo",
