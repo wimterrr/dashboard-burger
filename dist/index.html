@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Burger Allocator Board</title>
+    <style>:root {
+  color-scheme: light;
+  --paper: #f6efe3;
+  --ink: #1b1b18;
+  --muted: #695f50;
+  --line: rgba(27, 27, 24, 0.12);
+  --push: #cb5a2e;
+  --push-bg: #fff0e6;
+  --park: #8d7748;
+  --park-bg: #f7f0d8;
+  --kill: #6c2b2f;
+  --kill-bg: #fde9e7;
+  --panel: rgba(255, 255, 255, 0.66);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(203, 90, 46, 0.18), transparent 28%),
+    linear-gradient(180deg, #fdf7ef 0%, var(--paper) 55%, #efe1cb 100%);
+}
+
+.shell {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 40px 20px 56px;
+}
+
+.hero,
+.policy,
+.lane {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--panel);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 50px rgba(71, 49, 28, 0.08);
+}
+
+.hero,
+.policy {
+  padding: 24px;
+}
+
+.hero h1,
+.lane h2 {
+  margin: 0;
+  line-height: 1.05;
+}
+
+.hero h1 {
+  max-width: 11ch;
+  font-size: clamp(2.6rem, 5vw, 4.8rem);
+}
+
+.hero-copy,
+.reason,
+.next,
+.meta,
+.policy li {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.kicker,
+.eyebrow {
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+  color: var(--muted);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.95rem;
+}
+
+.meta-row span {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--line);
+}
+
+.policy {
+  margin-top: 18px;
+}
+
+.policy ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.policy-table {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.freeze-audit {
+  margin-top: 18px;
+}
+
+.reopen-audit {
+  margin-top: 18px;
+}
+
+.audit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.audit-grid article {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.audit-grid h2 {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+}
+
+.audit-grid ul {
+  margin: 0;
+  padding-left: 18px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.audit-note {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.policy-row {
+  display: grid;
+  grid-template-columns: 120px 160px 130px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.72);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.policy-row p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.policy-lane,
+.policy-effect {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.policy-signal {
+  font-weight: 600;
+}
+
+.policy-rule {
+  color: var(--muted);
+}
+
+.lane-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.lane {
+  padding: 18px;
+}
+
+.lane-head {
+  margin-bottom: 14px;
+}
+
+.card-list {
+  display: grid;
+  gap: 14px;
+}
+
+.card {
+  border-radius: 18px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  min-height: 180px;
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 1.45rem;
+  line-height: 1.12;
+}
+
+.card .meta {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.card .scoreline {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.card .reason {
+  margin: 10px 0 10px;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.card .freeze {
+  margin: 0 0 10px;
+  color: #8a4120;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.card .evidence {
+  margin: 0 0 12px;
+  padding-left: 18px;
+  color: var(--muted);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.card .evidence li + li {
+  margin-top: 4px;
+}
+
+.card .next {
+  margin: 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: 0.97rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.buildNow {
+  background: var(--push-bg);
+  border-color: rgba(203, 90, 46, 0.28);
+}
+
+.park {
+  background: var(--park-bg);
+  border-color: rgba(141, 119, 72, 0.28);
+}
+
+.killReview {
+  background: var(--kill-bg);
+  border-color: rgba(108, 43, 47, 0.28);
+}
+
+.empty {
+  display: grid;
+  place-items: center;
+  min-height: 120px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.95em;
+}
+
+@media (max-width: 980px) {
+  .lane-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    max-width: none;
+  }
+
+  .policy-row {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <p class="kicker">Burger Allocator</p>
+        <h1>One replay, one weekly push, one stop-review candidate.</h1>
+        <p class="hero-copy">This board reads only <code>state/ideas.json</code> and forces three capped verdict lanes: <strong>build now</strong>, <strong>park</strong>, and <strong>kill review</strong>.</p>
+        <div class="meta-row">
+          <span>Generated: Apr 14, 2026, 9:54 a.m.</span>
+          <span>Active counts: <span>operate 11</span><span>ready 26</span></span>
+          <span>Lane cap: 3 each</span>
+          <span>Replay candidates: 37</span>
+        </div>
+      </section>
+      <section class="policy">
+        <p class="kicker">Policy</p>
+        <ul>
+          <li>build now favors non-muted build-or-ship lanes, recent updates, repo or deploy receipts, and explicit next steps.</li><li>park holds active work that still has a credible next action but is not the strongest weekly push.</li><li>kill review highlights muted, stale, or still-unstarted bets that should re-justify their slot before more effort.</li>
+        </ul>
+        <div class="policy-table" aria-label="Allocator policy table">
+    <article class="policy-row">
+      <p class="policy-lane">build now</p>
+      <p class="policy-signal">project stage</p>
+      <p class="policy-effect">push harder</p>
+      <p class="policy-rule">ship +600, build +500, mvp +400, spec +300, ready +200, planning +100, operate +0</p>
+    </article>
+<article class="policy-row">
+      <p class="policy-lane">build now</p>
+      <p class="policy-signal">shipping receipts</p>
+      <p class="policy-effect">push harder</p>
+      <p class="policy-rule">deploy receipt +35, repo receipt +20</p>
+    </article>
+<article class="policy-row">
+      <p class="policy-lane">build now</p>
+      <p class="policy-signal">freshness and next step</p>
+      <p class="policy-effect">push harder</p>
+      <p class="policy-rule">up to +40 for recent updates, +5 per saved next action, maturity score added directly</p>
+    </article>
+<article class="policy-row">
+      <p class="policy-lane">build now</p>
+      <p class="policy-signal">mute state</p>
+      <p class="policy-effect">block push</p>
+      <p class="policy-rule">muted project -120 and excluded from build-now lane</p>
+    </article>
+<article class="policy-row">
+      <p class="policy-lane">park</p>
+      <p class="policy-signal">middle state</p>
+      <p class="policy-effect">hold</p>
+      <p class="policy-rule">anything not strong enough for build now and not weak enough for kill review stays parked</p>
+    </article>
+<article class="policy-row">
+      <p class="policy-lane">park</p>
+      <p class="policy-signal">saved next action</p>
+      <p class="policy-effect">hold</p>
+      <p class="policy-rule">park keeps cards with a credible next step instead of fabricating urgency</p>
+    </article>
+<article class="policy-row">
+      <p class="policy-lane">kill review</p>
+      <p class="policy-signal">explicit freeze</p>
+      <p class="policy-effect">stop review</p>
+      <p class="policy-rule">muted project +130 because it already lacks permission to advance</p>
+    </article>
+<article class="policy-row">
+      <p class="policy-lane">kill review</p>
+      <p class="policy-signal">idle ready bet</p>
+      <p class="policy-effect">stop review</p>
+      <p class="policy-rule">ready-without-project +80 so unstarted cards must defend a restart</p>
+    </article>
+<article class="policy-row">
+      <p class="policy-lane">kill review</p>
+      <p class="policy-signal">operate drift and age</p>
+      <p class="policy-effect">stop review</p>
+      <p class="policy-rule">operate +25 plus age pressure at 18 points per day</p>
+    </article>
+<article class="policy-row">
+      <p class="policy-lane">kill review</p>
+      <p class="policy-signal">missing receipts and next step</p>
+      <p class="policy-effect">stop review</p>
+      <p class="policy-rule">missing repo +18, missing deploy +12, weak next-step signal up to +20</p>
+    </article>
+  </div>
+      </section>
+      <section class="policy freeze-audit">
+    <p class="kicker">Frozen Ready Audit</p>
+    <p class="hero-copy">The replay currently keeps <strong>26</strong> ready bets frozen. These are the saved reasons showing up across that pool and inside the visible kill-review lane.</p>
+    <div class="audit-grid">
+      <article>
+        <h2>All frozen ready bets</h2>
+        <ul><li>manual freeze: 26</li><li>no live project: 26</li><li>stale evidence: 26</li><li>missing repo receipt: 26</li><li>missing deploy receipt: 26</li></ul>
+      </article>
+      <article>
+        <h2>Visible kill-review lane</h2>
+        <ul><li>manual freeze: 3</li><li>no live project: 3</li><li>stale evidence: 3</li><li>missing repo receipt: 3</li><li>missing deploy receipt: 3</li></ul>
+      </article>
+    </div>
+  </section>
+      <section class="policy reopen-audit">
+    <p class="kicker">Reopen Trigger Audit</p>
+    <p class="hero-copy">The latest operate audit says <strong>8</strong> of <strong>11</strong> live operate lanes still lack an explicit reopen trigger. Keep maintenance quiet until those lanes say exactly what should wake them.</p>
+    <p class="audit-note">Next missing-trigger lane: <strong>Pixel monster game without an engine</strong> (14h stale)</p>
+    <div class="audit-grid">
+      <article>
+        <h2>Missing-trigger reasons</h2>
+        <ul><li>summary and next actions present no trigger: 8</li></ul>
+      </article>
+      <article>
+        <h2>Top cleanup queue</h2>
+        <ul><li><strong>1. Pixel monster game without an engine</strong> - 14h stale, summary and next actions present no trigger, watch-but-add-trigger</li><li><strong>2. 72글자: 진짜이름 육성 웹게임</strong> - 9h stale, summary and next actions present no trigger, watch-but-add-trigger</li><li><strong>3. 원격 MCP 온보딩 스모크테스터</strong> - 7h stale, summary and next actions present no trigger, watch-but-add-trigger</li></ul>
+      </article>
+    </div>
+  </section>
+      <div class="lane-grid">
+        <section class="lane">
+    <div class="lane-head">
+      <p class="kicker">Push</p>
+      <h2>Build Now</h2>
+    </div>
+    <div class="card-list"><article class="card buildNow">
+    <header>
+      <p class="eyebrow">operate</p>
+      <h3>Pixel monster game without an engine</h3>
+      <p class="meta">Apr 13, 2026, 7:31 p.m.</p>
+    </header>
+    <p class="scoreline">push 124.0 / stop 43.8</p>
+    <p class="reason">Already has deploy evidence and recent activity, so one more push can compound instead of reset.</p>
+    
+    <ul class="evidence">
+      <li>repo receipt exists</li><li>deploy receipt exists</li><li>3 next actions saved</li><li>maturity 20</li><li>updated in the last 24h</li><li>stage operate</li>
+    </ul>
+    <p class="next">Expose the replay receipt or a readable summary of it on the public Pages proof surface.</p>
+  </article>
+<article class="card buildNow">
+    <header>
+      <p class="eyebrow">operate</p>
+      <h3>AI idea maturity pipeline</h3>
+      <p class="meta">Apr 14, 2026, 9:33 a.m.</p>
+    </header>
+    <p class="scoreline">push 74.8 / stop 63.3</p>
+    <p class="reason">Recent non-muted lane with enough execution evidence to justify another week of capital.</p>
+    <p class="freeze">missing repo receipt / missing deploy receipt</p>
+    <ul class="evidence">
+      <li>3 next actions saved</li><li>maturity 20</li><li>updated in the last 24h</li><li>stage operate</li>
+    </ul>
+    <p class="next">Reduce the eight operate-stage project lanes that still lack an explicit reopen trigger.</p>
+  </article>
+<article class="card buildNow">
+    <header>
+      <p class="eyebrow">operate</p>
+      <h3>Pixel monster game with an engine</h3>
+      <p class="meta">Apr 14, 2026, 5:32 a.m.</p>
+    </header>
+    <p class="scoreline">push 73.2 / stop 66.3</p>
+    <p class="reason">Recent non-muted lane with enough execution evidence to justify another week of capital.</p>
+    <p class="freeze">missing repo receipt / missing deploy receipt</p>
+    <ul class="evidence">
+      <li>3 next actions saved</li><li>maturity 20</li><li>updated in the last 24h</li><li>stage operate</li>
+    </ul>
+    <p class="next">Run one real Godot cold-reload pass that starts in Route01, enters Battle, captures Mossbit, saves at SaveAnchor, restarts, and proves checkpoint_id, roster_delta, and spent_items survive together.</p>
+  </article></div>
+  </section>
+        <section class="lane">
+    <div class="lane-head">
+      <p class="kicker">Hold</p>
+      <h2>Park</h2>
+    </div>
+    <div class="card-list"><article class="card park">
+    <header>
+      <p class="eyebrow">ready (muted)</p>
+      <h3>개발 스레드 실패 리플레이 카드 팩토리</h3>
+      <p class="meta">Apr 10, 2026, 2:31 a.m.</p>
+    </header>
+    <p class="scoreline">push 117.0 / stop 321.5</p>
+    <p class="reason">Explicitly frozen for now; park it instead of pretending it is still advancing.</p>
+    <p class="freeze">manual freeze / no live project / stale evidence / missing repo receipt / missing deploy receipt</p>
+    <ul class="evidence">
+      <li>project manually muted</li><li>4 next actions saved</li><li>maturity 17</li><li>4.3d since last update</li><li>stage ready</li>
+    </ul>
+    <p class="next">muted 된 개발 스레드 1건으로 수동 replay를 돌린다: 카드만 받은 두 번째 에이전트가 5분 안에 trace나 report를 열고 첫 수정 시도를 시작하는지 본다.</p>
+  </article>
+<article class="card park">
+    <header>
+      <p class="eyebrow">ready (muted)</p>
+      <h3>개발 스레드 증거 영수증 감사기</h3>
+      <p class="meta">Apr 10, 2026, 5:32 a.m.</p>
+    </header>
+    <p class="scoreline">push 112.0 / stop 323.3</p>
+    <p class="reason">Explicitly frozen for now; park it instead of pretending it is still advancing.</p>
+    <p class="freeze">manual freeze / no live project / stale evidence / missing repo receipt / missing deploy receipt</p>
+    <ul class="evidence">
+      <li>project manually muted</li><li>3 next actions saved</li><li>maturity 17</li><li>4.2d since last update</li><li>stage ready</li>
+    </ul>
+    <p class="next">Use the no-engine latest-three receipt plus its ready card to draft one strict `충족 / 부분 충족 / 미충족` verdict with exactly three evidence lines and no repo re-read.</p>
+  </article>
+<article class="card park">
+    <header>
+      <p class="eyebrow">ready (muted)</p>
+      <h3>깃허브 에이전트 워크플로 안전 출력 감사기</h3>
+      <p class="meta">Apr 10, 2026, 7:31 a.m.</p>
+    </header>
+    <p class="scoreline">push 112.0 / stop 321.8</p>
+    <p class="reason">Explicitly frozen for now; park it instead of pretending it is still advancing.</p>
+    <p class="freeze">manual freeze / no live project / stale evidence / missing repo receipt / missing deploy receipt</p>
+    <ul class="evidence">
+      <li>project manually muted</li><li>3 next actions saved</li><li>maturity 17</li><li>4.1d since last update</li><li>stage ready</li>
+    </ul>
+    <p class="next">Replay one pilot workflow against an inherited-org-policy repo and a repo-level override so the receipt proves why the tier stayed comment-only or moved upward.</p>
+  </article></div>
+  </section>
+        <section class="lane">
+    <div class="lane-head">
+      <p class="kicker">Stop Review</p>
+      <h2>Kill Review</h2>
+    </div>
+    <div class="card-list"><article class="card killReview">
+    <header>
+      <p class="eyebrow">ready (muted)</p>
+      <h3>조용한 에이전트 운영 대시보드</h3>
+      <p class="meta">Apr 2, 2026, 10:33 p.m.</p>
+    </header>
+    <p class="scoreline">push 112.0 / stop 454.5</p>
+    <p class="reason">Muted lane with no active restart; keep it in stop-review until a human explicitly reopens it.</p>
+    <p class="freeze">manual freeze / no live project / stale evidence / missing repo receipt / missing deploy receipt</p>
+    <ul class="evidence">
+      <li>project manually muted</li><li>3 next actions saved</li><li>maturity 17</li><li>11.5d since last update</li><li>stage ready</li>
+    </ul>
+    <p class="next">Add a small deliberate-silence receipt that lists muted or inactive project lanes with the stored reason they are quiet.</p>
+  </article>
+<article class="card killReview">
+    <header>
+      <p class="eyebrow">ready (muted)</p>
+      <h3>개발 스레드 베팅 스톱로스 센티넬</h3>
+      <p class="meta">Apr 8, 2026, 3:31 a.m.</p>
+    </header>
+    <p class="scoreline">push 112.0 / stop 360.8</p>
+    <p class="reason">Muted lane with no active restart; keep it in stop-review until a human explicitly reopens it.</p>
+    <p class="freeze">manual freeze / no live project / stale evidence / missing repo receipt / missing deploy receipt</p>
+    <ul class="evidence">
+      <li>project manually muted</li><li>3 next actions saved</li><li>maturity 17</li><li>6.3d since last update</li><li>stage ready</li>
+    </ul>
+    <p class="next">active unmuted operate 11개를 마지막 3개 업데이트 기준으로 replay해서 `continue / trim / stop` verdict와 trigger line을 한 표로 고정한다.</p>
+  </article>
+<article class="card killReview">
+    <header>
+      <p class="eyebrow">ready (muted)</p>
+      <h3>유튜브 쇼츠 안티슬롭 시리즈 코치</h3>
+      <p class="meta">Apr 8, 2026, 5:30 a.m.</p>
+    </header>
+    <p class="scoreline">push 110.0 / stop 359.3</p>
+    <p class="reason">Muted lane with no active restart; keep it in stop-review until a human explicitly reopens it.</p>
+    <p class="freeze">manual freeze / no live project / stale evidence / missing repo receipt / missing deploy receipt</p>
+    <ul class="evidence">
+      <li>project manually muted</li><li>3 next actions saved</li><li>maturity 15</li><li>6.2d since last update</li><li>stage ready</li>
+    </ul>
+    <p class="next">사람이 바로 다시 시작할 생각이 있으면 먼저 project mute를 해제하고, 최근 20편의 제목·썸네일 문구·설명 첫 줄·첫 훅·한 줄 개요·AI disclosure 여부를 한 번에 넣은 입력팩과 새 초안 1편으로 첫 20+1 코칭 카드를 재현한다.</p>
+  </article></div>
+  </section>
+      </div>
+    </main>
+  </body>
+</html>

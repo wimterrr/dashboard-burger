@@ -1,0 +1,1173 @@
+{
+  "generatedAt": "2026-04-14T09:54:42.489Z",
+  "policy": [
+    "build now favors non-muted build-or-ship lanes, recent updates, repo or deploy receipts, and explicit next steps.",
+    "park holds active work that still has a credible next action but is not the strongest weekly push.",
+    "kill review highlights muted, stale, or still-unstarted bets that should re-justify their slot before more effort."
+  ],
+  "policyRows": [
+    {
+      "lane": "build now",
+      "signal": "project stage",
+      "effect": "push harder",
+      "rule": "ship +600, build +500, mvp +400, spec +300, ready +200, planning +100, operate +0"
+    },
+    {
+      "lane": "build now",
+      "signal": "shipping receipts",
+      "effect": "push harder",
+      "rule": "deploy receipt +35, repo receipt +20"
+    },
+    {
+      "lane": "build now",
+      "signal": "freshness and next step",
+      "effect": "push harder",
+      "rule": "up to +40 for recent updates, +5 per saved next action, maturity score added directly"
+    },
+    {
+      "lane": "build now",
+      "signal": "mute state",
+      "effect": "block push",
+      "rule": "muted project -120 and excluded from build-now lane"
+    },
+    {
+      "lane": "park",
+      "signal": "middle state",
+      "effect": "hold",
+      "rule": "anything not strong enough for build now and not weak enough for kill review stays parked"
+    },
+    {
+      "lane": "park",
+      "signal": "saved next action",
+      "effect": "hold",
+      "rule": "park keeps cards with a credible next step instead of fabricating urgency"
+    },
+    {
+      "lane": "kill review",
+      "signal": "explicit freeze",
+      "effect": "stop review",
+      "rule": "muted project +130 because it already lacks permission to advance"
+    },
+    {
+      "lane": "kill review",
+      "signal": "idle ready bet",
+      "effect": "stop review",
+      "rule": "ready-without-project +80 so unstarted cards must defend a restart"
+    },
+    {
+      "lane": "kill review",
+      "signal": "operate drift and age",
+      "effect": "stop review",
+      "rule": "operate +25 plus age pressure at 18 points per day"
+    },
+    {
+      "lane": "kill review",
+      "signal": "missing receipts and next step",
+      "effect": "stop review",
+      "rule": "missing repo +18, missing deploy +12, weak next-step signal up to +20"
+    }
+  ],
+  "receipt": {
+    "laneLimit": 3,
+    "candidateCount": 37,
+    "frozenReadyPool": {
+      "count": 26,
+      "reasonCounts": {
+        "manualFreeze": 26,
+        "noLiveProject": 26,
+        "staleEvidence": 26,
+        "missingRepo": 26,
+        "missingDeploy": 26,
+        "thinNextStep": 0
+      }
+    },
+    "killReviewLane": {
+      "reasonCounts": {
+        "manualFreeze": 3,
+        "noLiveProject": 3,
+        "staleEvidence": 3,
+        "missingRepo": 3,
+        "missingDeploy": 3,
+        "thinNextStep": 0
+      }
+    },
+    "laneCounts": {
+      "buildNow": 3,
+      "park": 3,
+      "killReview": 3
+    },
+    "reopenAudit": {
+      "generatedAt": "2026-04-14T09:32:53.858Z",
+      "activeUnmutedCount": 11,
+      "operateCount": 11,
+      "withTriggerCount": 3,
+      "withoutTriggerCount": 8,
+      "missingReasonCounts": {
+        "summary-and-next-actions-present-no-trigger": 8
+      },
+      "nextCandidate": {
+        "ideaId": "pixel-monster-game-without-an-engine-mn8c514t",
+        "title": "Pixel monster game without an engine",
+        "staleHours": 14,
+        "missingReason": "summary-and-next-actions-present-no-trigger"
+      },
+      "actionQueue": [
+        {
+          "rank": 1,
+          "ideaId": "pixel-monster-game-without-an-engine-mn8c514t",
+          "title": "Pixel monster game without an engine",
+          "staleHours": 14,
+          "missingReason": "summary-and-next-actions-present-no-trigger",
+          "suggestedAction": "watch-but-add-trigger"
+        },
+        {
+          "rank": 2,
+          "ideaId": "72글자-진짜이름-육성-웹게임-mnh2ta4w",
+          "title": "72글자: 진짜이름 육성 웹게임",
+          "staleHours": 9,
+          "missingReason": "summary-and-next-actions-present-no-trigger",
+          "suggestedAction": "watch-but-add-trigger"
+        },
+        {
+          "rank": 3,
+          "ideaId": "원격-mcp-온보딩-스모크테스터-mnda9u6x",
+          "title": "원격 MCP 온보딩 스모크테스터",
+          "staleHours": 7,
+          "missingReason": "summary-and-next-actions-present-no-trigger",
+          "suggestedAction": "watch-but-add-trigger"
+        }
+      ]
+    }
+  },
+  "lanes": {
+    "buildNow": [
+      {
+        "id": "pixel-monster-game-without-an-engine-mn8c514t",
+        "title": "Pixel monster game without an engine",
+        "stage": "operate",
+        "stageLabel": "operate",
+        "updatedAt": "2026-04-13T19:31:56.330Z",
+        "ageDays": 0.5991453587962963,
+        "maturityScore": 20,
+        "nextActionCount": 3,
+        "nextActionPreview": "Expose the replay receipt or a readable summary of it on the public Pages proof surface.",
+        "hasRepo": true,
+        "hasDeploy": true,
+        "projectActive": true,
+        "projectMuted": false,
+        "summary": "A 3-day compiler-first bet with a stronger current gate: this lane no longer lives or dies on a stale-looking Pages header alone. The paired operate thread now freezes a local `outputs/latest-proof-replay.json` receipt that replays fresh compile, generated bundle parity, the three-field capture-save-reload proof, and one named compiler failure. Week 2 only deserves time if that receipt stays green and the proof becomes readable from the public ship surface too; otherwise the faster Godot lane should win.",
+        "evidence": [
+          "repo receipt exists",
+          "deploy receipt exists",
+          "3 next actions saved",
+          "maturity 20",
+          "updated in the last 24h",
+          "stage operate"
+        ],
+        "lane": "buildNow",
+        "reason": "Already has deploy evidence and recent activity, so one more push can compound instead of reset.",
+        "freezeReasons": [],
+        "scores": {
+          "buildNow": {
+            "total": 124.00854641203703,
+            "breakdown": [
+              {
+                "label": "stage-priority",
+                "value": 0
+              },
+              {
+                "label": "deploy-receipt",
+                "value": 35
+              },
+              {
+                "label": "repo-receipt",
+                "value": 20
+              },
+              {
+                "label": "muted-penalty",
+                "value": 0
+              },
+              {
+                "label": "freshness",
+                "value": 34.008546412037035
+              },
+              {
+                "label": "next-actions",
+                "value": 15
+              },
+              {
+                "label": "maturity",
+                "value": 20
+              }
+            ]
+          },
+          "killReview": {
+            "total": 43.8,
+            "breakdown": [
+              {
+                "label": "muted-bonus",
+                "value": 0
+              },
+              {
+                "label": "idle-ready-bonus",
+                "value": 0
+              },
+              {
+                "label": "operate-drift",
+                "value": 25
+              },
+              {
+                "label": "age-pressure",
+                "value": 10.8
+              },
+              {
+                "label": "missing-repo",
+                "value": 0
+              },
+              {
+                "label": "missing-deploy",
+                "value": 0
+              },
+              {
+                "label": "missing-next-step",
+                "value": 8
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "ai-idea-maturity-pipeline-mn87zsck",
+        "title": "AI idea maturity pipeline",
+        "stage": "operate",
+        "stageLabel": "operate",
+        "updatedAt": "2026-04-14T09:33:04.852Z",
+        "ageDays": 0.01501894675925926,
+        "maturityScore": 20,
+        "nextActionCount": 3,
+        "nextActionPreview": "Reduce the eight operate-stage project lanes that still lack an explicit reopen trigger.",
+        "hasRepo": false,
+        "hasDeploy": false,
+        "projectActive": true,
+        "projectMuted": false,
+        "summary": "A quiet idea-ops loop that advances one card per run, records evidence in one forum thread, and pings the main channel only once per card. The stronger claim now is saturation control: all 37 active ideas are `ready` and all 11 active unmuted project lanes are already in `operate`, so the shaping lane should act like a portfolio referee that reopens build noise only for explicit triggers, fresh handoffs, or deliberate unmute decisions.",
+        "evidence": [
+          "3 next actions saved",
+          "maturity 20",
+          "updated in the last 24h",
+          "stage operate"
+        ],
+        "lane": "buildNow",
+        "reason": "Recent non-muted lane with enough execution evidence to justify another week of capital.",
+        "freezeReasons": [
+          {
+            "key": "missingRepo",
+            "label": "missing repo receipt",
+            "detail": "no saved repo URL"
+          },
+          {
+            "key": "missingDeploy",
+            "label": "missing deploy receipt",
+            "detail": "no saved deploy URL"
+          }
+        ],
+        "scores": {
+          "buildNow": {
+            "total": 74.84981053240742,
+            "breakdown": [
+              {
+                "label": "stage-priority",
+                "value": 0
+              },
+              {
+                "label": "deploy-receipt",
+                "value": 0
+              },
+              {
+                "label": "repo-receipt",
+                "value": 0
+              },
+              {
+                "label": "muted-penalty",
+                "value": 0
+              },
+              {
+                "label": "freshness",
+                "value": 39.84981053240741
+              },
+              {
+                "label": "next-actions",
+                "value": 15
+              },
+              {
+                "label": "maturity",
+                "value": 20
+              }
+            ]
+          },
+          "killReview": {
+            "total": 63.3,
+            "breakdown": [
+              {
+                "label": "muted-bonus",
+                "value": 0
+              },
+              {
+                "label": "idle-ready-bonus",
+                "value": 0
+              },
+              {
+                "label": "operate-drift",
+                "value": 25
+              },
+              {
+                "label": "age-pressure",
+                "value": 0.3
+              },
+              {
+                "label": "missing-repo",
+                "value": 18
+              },
+              {
+                "label": "missing-deploy",
+                "value": 12
+              },
+              {
+                "label": "missing-next-step",
+                "value": 8
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "pixel-monster-game-with-an-engine-mn8c514r",
+        "title": "Pixel monster game with an engine",
+        "stage": "operate",
+        "stageLabel": "operate",
+        "updatedAt": "2026-04-14T05:32:24.272Z",
+        "ageDays": 0.18215528935185185,
+        "maturityScore": 20,
+        "nextActionCount": 3,
+        "nextActionPreview": "Run one real Godot cold-reload pass that starts in Route01, enters Battle, captures Mossbit, saves at SaveAnchor, restarts, and proves checkpoint_id, roster_delta, and spent_items survive together.",
+        "hasRepo": false,
+        "hasDeploy": false,
+        "projectActive": true,
+        "projectMuted": false,
+        "summary": "A Godot-first pixel-monster bet is no longer blocked on repo bootstrap: /home/node/host-home/dev/pixel-monster-godot now exists and freezes one reusable first-capture proof across project.godot, Route01.tscn, Battle.tscn, save_anchor.gd, proof_contract.json, and outputs/latest-proof-receipt.json. The honest next comparison is tighter than before: turn that static contract into one real cold-reload play pass where checkpoint_id, roster_delta, and spent_items survive an actual save-anchor round trip. Keep the engine lane live only if that playable reload pushes week-2 work toward content instead of more topology plumbing.",
+        "evidence": [
+          "3 next actions saved",
+          "maturity 20",
+          "updated in the last 24h",
+          "stage operate"
+        ],
+        "lane": "buildNow",
+        "reason": "Recent non-muted lane with enough execution evidence to justify another week of capital.",
+        "freezeReasons": [
+          {
+            "key": "missingRepo",
+            "label": "missing repo receipt",
+            "detail": "no saved repo URL"
+          },
+          {
+            "key": "missingDeploy",
+            "label": "missing deploy receipt",
+            "detail": "no saved deploy URL"
+          }
+        ],
+        "scores": {
+          "buildNow": {
+            "total": 73.17844710648149,
+            "breakdown": [
+              {
+                "label": "stage-priority",
+                "value": 0
+              },
+              {
+                "label": "deploy-receipt",
+                "value": 0
+              },
+              {
+                "label": "repo-receipt",
+                "value": 0
+              },
+              {
+                "label": "muted-penalty",
+                "value": 0
+              },
+              {
+                "label": "freshness",
+                "value": 38.17844710648148
+              },
+              {
+                "label": "next-actions",
+                "value": 15
+              },
+              {
+                "label": "maturity",
+                "value": 20
+              }
+            ]
+          },
+          "killReview": {
+            "total": 66.3,
+            "breakdown": [
+              {
+                "label": "muted-bonus",
+                "value": 0
+              },
+              {
+                "label": "idle-ready-bonus",
+                "value": 0
+              },
+              {
+                "label": "operate-drift",
+                "value": 25
+              },
+              {
+                "label": "age-pressure",
+                "value": 3.3
+              },
+              {
+                "label": "missing-repo",
+                "value": 18
+              },
+              {
+                "label": "missing-deploy",
+                "value": 12
+              },
+              {
+                "label": "missing-next-step",
+                "value": 8
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "park": [
+      {
+        "id": "개발-스레드-실패-리플레이-카드-팩토리-mnbwz2f4",
+        "title": "개발 스레드 실패 리플레이 카드 팩토리",
+        "stage": "ready",
+        "stageLabel": "ready (muted)",
+        "updatedAt": "2026-04-10T02:31:20.114Z",
+        "ageDays": 4.307897858796296,
+        "maturityScore": 17,
+        "nextActionCount": 4,
+        "nextActionPreview": "muted 된 개발 스레드 1건으로 수동 replay를 돌린다: 카드만 받은 두 번째 에이전트가 5분 안에 trace나 report를 열고 첫 수정 시도를 시작하는지 본다.",
+        "hasRepo": false,
+        "hasDeploy": false,
+        "projectActive": false,
+        "projectMuted": true,
+        "summary": "개발 스레드 실패 리플레이 카드 팩토리는 one-failure handoff receipt다. 입력은 `[개발]` 업데이트 1개, failing test/URL 1개, trace/report 진입점 1개, branch/commit 1개, `failure-context.json` 1개로 고정한다. 출력은 작업 맥락, 정확한 실패 지점, trace/report 여는 경로, 환경 닻, 첫 5분의 안전한 행동 1개다. 이번 로컬 제약은 archive legality다: inactive 프로젝트가 thread 메타데이터를 남기려면 `muted=true`여야 하고 아니면 stale metadata로 validate에서 실패한다. 그래서 카드는 조용해진 스레드에서 추가 설명을 기다리지 않고, `live` 또는 `archive-pinned muted` 상태와 마지막 허용 포스트, 남은 evidence entry만으로 실패를 다시 열게 해야 한다.",
+        "evidence": [
+          "project manually muted",
+          "4 next actions saved",
+          "maturity 17",
+          "4.3d since last update",
+          "stage ready"
+        ],
+        "lane": "park",
+        "reason": "Explicitly frozen for now; park it instead of pretending it is still advancing.",
+        "freezeReasons": [
+          {
+            "key": "manualFreeze",
+            "label": "manual freeze",
+            "detail": "project is explicitly muted"
+          },
+          {
+            "key": "noLiveProject",
+            "label": "no live project",
+            "detail": "still ready-only without an active project lane"
+          },
+          {
+            "key": "staleEvidence",
+            "label": "stale evidence",
+            "detail": "4.3d since the last saved update"
+          },
+          {
+            "key": "missingRepo",
+            "label": "missing repo receipt",
+            "detail": "no saved repo URL"
+          },
+          {
+            "key": "missingDeploy",
+            "label": "missing deploy receipt",
+            "detail": "no saved deploy URL"
+          }
+        ],
+        "scores": {
+          "buildNow": {
+            "total": 117,
+            "breakdown": [
+              {
+                "label": "stage-priority",
+                "value": 200
+              },
+              {
+                "label": "deploy-receipt",
+                "value": 0
+              },
+              {
+                "label": "repo-receipt",
+                "value": 0
+              },
+              {
+                "label": "muted-penalty",
+                "value": -120
+              },
+              {
+                "label": "freshness",
+                "value": 0
+              },
+              {
+                "label": "next-actions",
+                "value": 20
+              },
+              {
+                "label": "maturity",
+                "value": 17
+              }
+            ]
+          },
+          "killReview": {
+            "total": 321.5,
+            "breakdown": [
+              {
+                "label": "muted-bonus",
+                "value": 130
+              },
+              {
+                "label": "idle-ready-bonus",
+                "value": 80
+              },
+              {
+                "label": "operate-drift",
+                "value": 0
+              },
+              {
+                "label": "age-pressure",
+                "value": 77.5
+              },
+              {
+                "label": "missing-repo",
+                "value": 18
+              },
+              {
+                "label": "missing-deploy",
+                "value": 12
+              },
+              {
+                "label": "missing-next-step",
+                "value": 4
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "개발-스레드-증거-영수증-감사기-mncbyjsz",
+        "title": "개발 스레드 증거 영수증 감사기",
+        "stage": "ready",
+        "stageLabel": "ready (muted)",
+        "updatedAt": "2026-04-10T05:32:12.455Z",
+        "ageDays": 4.182292060185185,
+        "maturityScore": 17,
+        "nextActionCount": 3,
+        "nextActionPreview": "Use the no-engine latest-three receipt plus its ready card to draft one strict `충족 / 부분 충족 / 미충족` verdict with exactly three evidence lines and no repo re-read.",
+        "hasRepo": false,
+        "hasDeploy": false,
+        "projectActive": false,
+        "projectMuted": true,
+        "summary": "이 카드는 여전히 ready지만, 이제 bet의 중심은 `mirror가 있느냐`가 아니라 `어느 latest-three를 첫 verdict fixture로 고르느냐`다. 로컬 projects 폴더에는 이미 10개 lane의 `outputs/thread-mirror/latest-three.json` 이 있고, 그중 가장 정직한 designated proof lane은 `Pixel monster game without an engine` 쪽이다. 이 lane은 ready promise에서 이미 `compile + bundle parity + capture-save-reload proof + named compiler failure`를 week-2 gate로 못 박았고, 실제 operate mirror 3연속 포스트도 로컬 proof receipt 추가 -> public Pages 노출 -> Route01 source hash 고정 순서로 같은 약속을 계속 좁힌다. 즉 첫 auditor wedge는 더 이상 전용 capture lane을 만들거나 live-vs-muted를 추상적으로 고르는 일이 아니라, 이 no-engine lane의 ready promise와 latest-three mirrored evidence만으로 `충족 / 부분 충족 / 미충족` verdict 1줄과 근거 3줄이 raw repo 재조회 없이 재생되는지 증명하는 replay contract다.",
+        "evidence": [
+          "project manually muted",
+          "3 next actions saved",
+          "maturity 17",
+          "4.2d since last update",
+          "stage ready"
+        ],
+        "lane": "park",
+        "reason": "Explicitly frozen for now; park it instead of pretending it is still advancing.",
+        "freezeReasons": [
+          {
+            "key": "manualFreeze",
+            "label": "manual freeze",
+            "detail": "project is explicitly muted"
+          },
+          {
+            "key": "noLiveProject",
+            "label": "no live project",
+            "detail": "still ready-only without an active project lane"
+          },
+          {
+            "key": "staleEvidence",
+            "label": "stale evidence",
+            "detail": "4.2d since the last saved update"
+          },
+          {
+            "key": "missingRepo",
+            "label": "missing repo receipt",
+            "detail": "no saved repo URL"
+          },
+          {
+            "key": "missingDeploy",
+            "label": "missing deploy receipt",
+            "detail": "no saved deploy URL"
+          }
+        ],
+        "scores": {
+          "buildNow": {
+            "total": 112,
+            "breakdown": [
+              {
+                "label": "stage-priority",
+                "value": 200
+              },
+              {
+                "label": "deploy-receipt",
+                "value": 0
+              },
+              {
+                "label": "repo-receipt",
+                "value": 0
+              },
+              {
+                "label": "muted-penalty",
+                "value": -120
+              },
+              {
+                "label": "freshness",
+                "value": 0
+              },
+              {
+                "label": "next-actions",
+                "value": 15
+              },
+              {
+                "label": "maturity",
+                "value": 17
+              }
+            ]
+          },
+          "killReview": {
+            "total": 323.3,
+            "breakdown": [
+              {
+                "label": "muted-bonus",
+                "value": 130
+              },
+              {
+                "label": "idle-ready-bonus",
+                "value": 80
+              },
+              {
+                "label": "operate-drift",
+                "value": 0
+              },
+              {
+                "label": "age-pressure",
+                "value": 75.3
+              },
+              {
+                "label": "missing-repo",
+                "value": 18
+              },
+              {
+                "label": "missing-deploy",
+                "value": 12
+              },
+              {
+                "label": "missing-next-step",
+                "value": 8
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "깃허브-에이전트-워크플로-안전-출력-감사기-mnfyrhnz",
+        "title": "깃허브 에이전트 워크플로 안전 출력 감사기",
+        "stage": "ready",
+        "stageLabel": "ready (muted)",
+        "updatedAt": "2026-04-10T07:31:12.546Z",
+        "ageDays": 4.099652118055555,
+        "maturityScore": 17,
+        "nextActionCount": 3,
+        "nextActionPreview": "Replay one pilot workflow against an inherited-org-policy repo and a repo-level override so the receipt proves why the tier stayed comment-only or moved upward.",
+        "hasRepo": false,
+        "hasDeploy": false,
+        "projectActive": false,
+        "projectMuted": true,
+        "summary": "GitHub Agentic Workflows 기술 프리뷰를 도입하기 직전, Markdown 원본과 compiled YAML만이 아니라 저장소·조직 PR 생성 정책과 runner scope까지 같이 읽어 실제 rollout blast radius를 한 장으로 자르는 승인 감사기다. 첫 영수증은 trigger, compiled permissions, allowed Safe Outputs, write cap, summary exposure, untrusted-input sink, pinned-action drift, runner class and scope, PR-creation policy source, final gate verdict만 남긴다. 핵심은 safe outputs 존재 여부가 아니라 repo나 org가 PR 생성을 실제로 허용하는지, self-hosted runner가 public/forkable surface에 닿는지까지 5분 안에 설명하게 만드는 것이다.",
+        "evidence": [
+          "project manually muted",
+          "3 next actions saved",
+          "maturity 17",
+          "4.1d since last update",
+          "stage ready"
+        ],
+        "lane": "park",
+        "reason": "Explicitly frozen for now; park it instead of pretending it is still advancing.",
+        "freezeReasons": [
+          {
+            "key": "manualFreeze",
+            "label": "manual freeze",
+            "detail": "project is explicitly muted"
+          },
+          {
+            "key": "noLiveProject",
+            "label": "no live project",
+            "detail": "still ready-only without an active project lane"
+          },
+          {
+            "key": "staleEvidence",
+            "label": "stale evidence",
+            "detail": "4.1d since the last saved update"
+          },
+          {
+            "key": "missingRepo",
+            "label": "missing repo receipt",
+            "detail": "no saved repo URL"
+          },
+          {
+            "key": "missingDeploy",
+            "label": "missing deploy receipt",
+            "detail": "no saved deploy URL"
+          }
+        ],
+        "scores": {
+          "buildNow": {
+            "total": 112,
+            "breakdown": [
+              {
+                "label": "stage-priority",
+                "value": 200
+              },
+              {
+                "label": "deploy-receipt",
+                "value": 0
+              },
+              {
+                "label": "repo-receipt",
+                "value": 0
+              },
+              {
+                "label": "muted-penalty",
+                "value": -120
+              },
+              {
+                "label": "freshness",
+                "value": 0
+              },
+              {
+                "label": "next-actions",
+                "value": 15
+              },
+              {
+                "label": "maturity",
+                "value": 17
+              }
+            ]
+          },
+          "killReview": {
+            "total": 321.8,
+            "breakdown": [
+              {
+                "label": "muted-bonus",
+                "value": 130
+              },
+              {
+                "label": "idle-ready-bonus",
+                "value": 80
+              },
+              {
+                "label": "operate-drift",
+                "value": 0
+              },
+              {
+                "label": "age-pressure",
+                "value": 73.8
+              },
+              {
+                "label": "missing-repo",
+                "value": 18
+              },
+              {
+                "label": "missing-deploy",
+                "value": 12
+              },
+              {
+                "label": "missing-next-step",
+                "value": 8
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "killReview": [
+      {
+        "id": "조용한-에이전트-운영-대시보드-mnbdfp4a",
+        "title": "조용한 에이전트 운영 대시보드",
+        "stage": "ready",
+        "stageLabel": "ready (muted)",
+        "updatedAt": "2026-04-02T22:33:06.771Z",
+        "ageDays": 11.473330069444444,
+        "maturityScore": 17,
+        "nextActionCount": 3,
+        "nextActionPreview": "Add a small deliberate-silence receipt that lists muted or inactive project lanes with the stored reason they are quiet.",
+        "hasRepo": false,
+        "hasDeploy": false,
+        "projectActive": false,
+        "projectMuted": true,
+        "summary": "크론 로그, 아이디어 포럼, 개발 스레드, Ready 알림을 따로 뒤지지 않고 한 실행의 결과를 한 장으로 합쳐 보여주는 조용한 운영 대시보드. 이번 로컬 재빌드로 이 카드의 `project.active=false` + `project.muted=true` 상태가 Wake Queue에서 제대로 사라지는 것이 확인됐고, `project.active=true` 인 운영 레인 11개만 남았다. 그래서 남은 질문은 mute 억제가 아니라, '왜 지금 조용한지'를 설명하는 deliberate-silence receipt를 넣어 의도된 휴면과 놓친 운영 누락을 한 화면에서 구분해 주느냐이다.",
+        "evidence": [
+          "project manually muted",
+          "3 next actions saved",
+          "maturity 17",
+          "11.5d since last update",
+          "stage ready"
+        ],
+        "lane": "killReview",
+        "reason": "Muted lane with no active restart; keep it in stop-review until a human explicitly reopens it.",
+        "freezeReasons": [
+          {
+            "key": "manualFreeze",
+            "label": "manual freeze",
+            "detail": "project is explicitly muted"
+          },
+          {
+            "key": "noLiveProject",
+            "label": "no live project",
+            "detail": "still ready-only without an active project lane"
+          },
+          {
+            "key": "staleEvidence",
+            "label": "stale evidence",
+            "detail": "11.5d since the last saved update"
+          },
+          {
+            "key": "missingRepo",
+            "label": "missing repo receipt",
+            "detail": "no saved repo URL"
+          },
+          {
+            "key": "missingDeploy",
+            "label": "missing deploy receipt",
+            "detail": "no saved deploy URL"
+          }
+        ],
+        "scores": {
+          "buildNow": {
+            "total": 112,
+            "breakdown": [
+              {
+                "label": "stage-priority",
+                "value": 200
+              },
+              {
+                "label": "deploy-receipt",
+                "value": 0
+              },
+              {
+                "label": "repo-receipt",
+                "value": 0
+              },
+              {
+                "label": "muted-penalty",
+                "value": -120
+              },
+              {
+                "label": "freshness",
+                "value": 0
+              },
+              {
+                "label": "next-actions",
+                "value": 15
+              },
+              {
+                "label": "maturity",
+                "value": 17
+              }
+            ]
+          },
+          "killReview": {
+            "total": 454.5,
+            "breakdown": [
+              {
+                "label": "muted-bonus",
+                "value": 130
+              },
+              {
+                "label": "idle-ready-bonus",
+                "value": 80
+              },
+              {
+                "label": "operate-drift",
+                "value": 0
+              },
+              {
+                "label": "age-pressure",
+                "value": 206.5
+              },
+              {
+                "label": "missing-repo",
+                "value": 18
+              },
+              {
+                "label": "missing-deploy",
+                "value": 12
+              },
+              {
+                "label": "missing-next-step",
+                "value": 8
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "개발-스레드-베팅-스톱로스-센티넬-mnbm85sp",
+        "title": "개발 스레드 베팅 스톱로스 센티넬",
+        "stage": "ready",
+        "stageLabel": "ready (muted)",
+        "updatedAt": "2026-04-08T03:31:35.369Z",
+        "ageDays": 6.26605462962963,
+        "maturityScore": 17,
+        "nextActionCount": 3,
+        "nextActionPreview": "active unmuted operate 11개를 마지막 3개 업데이트 기준으로 replay해서 `continue / trim / stop` verdict와 trigger line을 한 표로 고정한다.",
+        "hasRepo": false,
+        "hasDeploy": false,
+        "projectActive": false,
+        "projectMuted": true,
+        "summary": "이미 분리된 [개발] 스레드의 최근 project-status/project-update 기록과 outward proof surface 존재 여부를 함께 읽어, 각 베팅을 `continue / trim / stop`으로 조용히 재분류하는 stop-loss sentinel. 이번 패스에서 주장을 더 좁혔다: live frontier는 더 이상 `35 active / 24 muted`가 아니라 현재 실제로 움직이는 11개 unmuted operate lane뿐이고, 최신 audit 기준 그중 explicit reopen trigger가 있는 lane도 1개, repo+deploy outward proof를 둘 다 가진 lane도 1개뿐이다. 그래서 v1의 핵심은 전체 포트폴리오를 크게 채점하는 대시보드가 아니라, operate frontier에서 `새 proof를 샀는가 / reopen 이유 없이 유지보수 문장만 늘어나는가 / stop-loss를 걸어야 하는가`를 먼저 가려내는 quiet verdict layer다.",
+        "evidence": [
+          "project manually muted",
+          "3 next actions saved",
+          "maturity 17",
+          "6.3d since last update",
+          "stage ready"
+        ],
+        "lane": "killReview",
+        "reason": "Muted lane with no active restart; keep it in stop-review until a human explicitly reopens it.",
+        "freezeReasons": [
+          {
+            "key": "manualFreeze",
+            "label": "manual freeze",
+            "detail": "project is explicitly muted"
+          },
+          {
+            "key": "noLiveProject",
+            "label": "no live project",
+            "detail": "still ready-only without an active project lane"
+          },
+          {
+            "key": "staleEvidence",
+            "label": "stale evidence",
+            "detail": "6.3d since the last saved update"
+          },
+          {
+            "key": "missingRepo",
+            "label": "missing repo receipt",
+            "detail": "no saved repo URL"
+          },
+          {
+            "key": "missingDeploy",
+            "label": "missing deploy receipt",
+            "detail": "no saved deploy URL"
+          }
+        ],
+        "scores": {
+          "buildNow": {
+            "total": 112,
+            "breakdown": [
+              {
+                "label": "stage-priority",
+                "value": 200
+              },
+              {
+                "label": "deploy-receipt",
+                "value": 0
+              },
+              {
+                "label": "repo-receipt",
+                "value": 0
+              },
+              {
+                "label": "muted-penalty",
+                "value": -120
+              },
+              {
+                "label": "freshness",
+                "value": 0
+              },
+              {
+                "label": "next-actions",
+                "value": 15
+              },
+              {
+                "label": "maturity",
+                "value": 17
+              }
+            ]
+          },
+          "killReview": {
+            "total": 360.8,
+            "breakdown": [
+              {
+                "label": "muted-bonus",
+                "value": 130
+              },
+              {
+                "label": "idle-ready-bonus",
+                "value": 80
+              },
+              {
+                "label": "operate-drift",
+                "value": 0
+              },
+              {
+                "label": "age-pressure",
+                "value": 112.8
+              },
+              {
+                "label": "missing-repo",
+                "value": 18
+              },
+              {
+                "label": "missing-deploy",
+                "value": 12
+              },
+              {
+                "label": "missing-next-step",
+                "value": 8
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "유튜브-쇼츠-안티슬롭-시리즈-코치-mnbdont6",
+        "title": "유튜브 쇼츠 안티슬롭 시리즈 코치",
+        "stage": "ready",
+        "stageLabel": "ready (muted)",
+        "updatedAt": "2026-04-08T05:30:47.886Z",
+        "ageDays": 6.183270868055556,
+        "maturityScore": 15,
+        "nextActionCount": 3,
+        "nextActionPreview": "사람이 바로 다시 시작할 생각이 있으면 먼저 project mute를 해제하고, 최근 20편의 제목·썸네일 문구·설명 첫 줄·첫 훅·한 줄 개요·AI disclosure 여부를 한 번에 넣은 입력팩과 새 초안 1편으로 첫 20+1 코칭 카드를 재현한다.",
+        "hasRepo": false,
+        "hasDeploy": false,
+        "projectActive": false,
+        "projectMuted": true,
+        "summary": "최근 20편과 이번 초안을 나란히 놓고, 이 편이 채널 안에서 왜 새롭고 왜 여전히 같은 시리즈인지 60초 안에 판정해 주는 업로드 직전 쇼츠 코치. 이 카드는 여전히 `ready but parked`가 맞지만, 이제 재시작 조건을 더 구체적으로 잠글 수 있다: 개발 스레드는 수동 mute 상태이고 repo나 deploy 영수증도 없으므로, 다음 진짜 진전은 정책 메모를 더 쌓는 일이 아니라 `최근 20편 메타데이터 + AI disclosure 여부 + 새 초안 1편`으로 첫 20+1 재현 입력팩을 만들고 unmute 할지, 아니면 그대로 archive 후보로 남길지다. 핵심은 AI 쇼츠를 더 빨리 만드는 생성기가 아니라, 유튜브가 채널 전체와 메타데이터 묶음으로 보는 inauthentic-content 위험을 사람 언어로 번역해 주는 얇은 프리플라이트이며, 첫 버전은 제목·썸네일 문구·설명 첫 줄·첫 훅·한 줄 개요·AI disclosure 여부만 받아 `반복 신호`, `이번 편의 새 포인트`, `시리즈 규칙 유지 여부`, `지금 고칠 한 가지`를 고정 포맷으로 내보내면 충분하다.",
+        "evidence": [
+          "project manually muted",
+          "3 next actions saved",
+          "maturity 15",
+          "6.2d since last update",
+          "stage ready"
+        ],
+        "lane": "killReview",
+        "reason": "Muted lane with no active restart; keep it in stop-review until a human explicitly reopens it.",
+        "freezeReasons": [
+          {
+            "key": "manualFreeze",
+            "label": "manual freeze",
+            "detail": "project is explicitly muted"
+          },
+          {
+            "key": "noLiveProject",
+            "label": "no live project",
+            "detail": "still ready-only without an active project lane"
+          },
+          {
+            "key": "staleEvidence",
+            "label": "stale evidence",
+            "detail": "6.2d since the last saved update"
+          },
+          {
+            "key": "missingRepo",
+            "label": "missing repo receipt",
+            "detail": "no saved repo URL"
+          },
+          {
+            "key": "missingDeploy",
+            "label": "missing deploy receipt",
+            "detail": "no saved deploy URL"
+          }
+        ],
+        "scores": {
+          "buildNow": {
+            "total": 110,
+            "breakdown": [
+              {
+                "label": "stage-priority",
+                "value": 200
+              },
+              {
+                "label": "deploy-receipt",
+                "value": 0
+              },
+              {
+                "label": "repo-receipt",
+                "value": 0
+              },
+              {
+                "label": "muted-penalty",
+                "value": -120
+              },
+              {
+                "label": "freshness",
+                "value": 0
+              },
+              {
+                "label": "next-actions",
+                "value": 15
+              },
+              {
+                "label": "maturity",
+                "value": 15
+              }
+            ]
+          },
+          "killReview": {
+            "total": 359.3,
+            "breakdown": [
+              {
+                "label": "muted-bonus",
+                "value": 130
+              },
+              {
+                "label": "idle-ready-bonus",
+                "value": 80
+              },
+              {
+                "label": "operate-drift",
+                "value": 0
+              },
+              {
+                "label": "age-pressure",
+                "value": 111.3
+              },
+              {
+                "label": "missing-repo",
+                "value": 18
+              },
+              {
+                "label": "missing-deploy",
+                "value": 12
+              },
+              {
+                "label": "missing-next-step",
+                "value": 8
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
