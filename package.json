@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/build-board.mjs",
+    "build": "node scripts/build-board.mjs && node scripts/sync-pages.mjs",
     "preview": "python3 -m http.server 4174 -d dist"
   }
 }
